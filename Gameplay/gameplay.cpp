@@ -78,4 +78,4 @@ void Gameplay::attackTypeSelection() {
         std::cout << "Invalid input. Enter a valid input." << std::endl;
         attackTypeSelection();
     }
-}
+} 
