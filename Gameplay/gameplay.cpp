@@ -64,6 +64,7 @@ void Gameplay::decisionToAttackOrUsePotion() {
 }
 
 void Gameplay::attackTypeSelection() {
+    std::cout << std::endl;
     std::cout << "Choose the form of attack you want to use: (1 for Physical/ 2 for Magic): ";
     std::cin >> attackType;
 
@@ -95,8 +96,9 @@ void Gameplay::playerAttack() {
 
     int enemyHealth = enemy.getHealth();
     enemyHealth = enemyHealth - damage;
+    enemy.setHealth(enemyHealth);
 
-    if(enemyHealth!=0) {
+    if(enemyHealth > 0) {
         enemyAttack(enemyHealth);
     }
 
@@ -115,13 +117,16 @@ void Gameplay::enemyAttack(int enemyHealth) {
 
     int playerHealth = player.getHealth();
     playerHealth = playerHealth - damage;
+    player.setHealth(playerHealth);
 
-    if(playerHealth!=0) {
+    if(playerHealth > 0) {
         std::cout << "Player health: " << playerHealth << " and enemy health: " << enemyHealth << "." << std::endl;
+        std::cout << std::endl;
         decisionToAttackOrUsePotion();
     }
 
     else {
+        std::cout << "You died" << std::endl;
         return;
     }
 
@@ -131,7 +136,12 @@ void Gameplay::newLevel () {
     int i = 1;
 
     if(i < 10) {
-        std::cout << "You are in level" << i << std::endl;
+        std::cout << "Level Clearled" << std::endl;
+        std::cout << "You are in level " << i  << " now." << std::endl;
+        std::cout << std::endl;
+
+        Gameplay();
+        
         decisionToAttackOrUsePotion();
     }
 
