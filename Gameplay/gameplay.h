@@ -48,7 +48,7 @@ class Gameplay {
 
             void decisionToAttackOrUsePotion();
 
-
+            void newLevel();
 };
 
 #endif

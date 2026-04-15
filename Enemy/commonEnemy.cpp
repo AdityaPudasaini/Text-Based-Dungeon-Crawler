@@ -1,8 +1,8 @@
 #include "commonEnemy.h"
 
 commonEnemy::commonEnemy() {
-    health = 100;
-    attackDamage = 10;
+    health = 26;
+    attackDamage = 8;
     isDefeated = false;
 }
 
