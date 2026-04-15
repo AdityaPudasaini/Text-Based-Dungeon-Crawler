@@ -97,7 +97,7 @@ void Gameplay::playerAttack() {
     enemyHealth = enemyHealth - damage;
 
     if(enemyHealth!=0) {
-        enemyAttack();
+        enemyAttack(enemyHealth);
     }
 
     else {
@@ -105,7 +105,7 @@ void Gameplay::playerAttack() {
     }
 }
 
-void Gameplay::enemyAttack() {
+void Gameplay::enemyAttack(int enemyHealth) {
     std::random_device rd;
     std::mt19937 gen(rd());
 
@@ -117,6 +117,7 @@ void Gameplay::enemyAttack() {
     playerHealth = playerHealth - damage;
 
     if(playerHealth!=0) {
+        std::cout << "Player health: " << playerHealth << " and enemy health: " << enemyHealth << "." << std::endl;
         decisionToAttackOrUsePotion();
     }
 
@@ -144,7 +145,7 @@ void Gameplay::playerUsePotion() {
     std::cout << "You used a potion! Health restored." << std::endl;
     player.setHealth(player.getHealth() + 20);
     displayHealthStatus();
-    enemyAttack();
+    enemyAttack(enemyHealth);
 }
 
 void Gameplay::displayHealthStatus() const {

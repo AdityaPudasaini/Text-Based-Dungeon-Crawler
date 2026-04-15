@@ -14,6 +14,7 @@ class Gameplay {
         std::string attackName;
         std::string potionName;
         std::string attackType;
+        int enemyHealth;
         
         public:
             Gameplay();
@@ -40,7 +41,7 @@ class Gameplay {
 
             void playerAttack();
 
-            void enemyAttack();
+            void enemyAttack(int enemyHealth);
 
             void playerUsePotion();
 
