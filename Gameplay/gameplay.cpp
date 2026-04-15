@@ -1,8 +1,13 @@
 #include <iostream>
+#include <random>
 
-#include "Gameplay.h"
+#include "Gameplay.h" 
 
-Gameplay::Gameplay(Player player, Enemy enemy) {
+Gameplay::Gameplay() {
+
+}
+
+Gameplay::Gameplay(Player player, commonEnemy enemy) {
     this->player = player;
     this->enemy = enemy;
 }
@@ -41,8 +46,8 @@ void Gameplay::setAttackType(std::string attackType) {
 
 void Gameplay::decisionToAttackOrUsePotion() {
     std::cout << "Do you want to attack or use a potion? (1 for Attack/2 for Potion): ";
-    std::cin >> playerDecision;
-    int playerDecionInt = std::stoi(playerDecision);
+    int playerDecionInt;
+    std::cin >> playerDecionInt;
 
     if(playerDecionInt == 1) {
         attackTypeSelection();    
@@ -78,4 +83,12 @@ void Gameplay::attackTypeSelection() {
         std::cout << "Invalid input. Enter a valid input." << std::endl;
         attackTypeSelection();
     }
+}
+
+void Gameplay::playerAttack() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_int_distribution<> dist (1, 10);
+
 } 
