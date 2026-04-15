@@ -1,5 +1,11 @@
 #include "Player.h"
 
+Player::Player() {
+    health = 100;
+    mana = 50;
+    attackDamage = 15;
+}
+
 Player::Player(float health, float mana, float attackDamage) {
     this->health = health;
     this->mana = mana;

@@ -92,3 +92,18 @@ void Gameplay::playerAttack() {
     std::uniform_int_distribution<> dist (1, 10);
 
 } 
+
+void Gameplay::playerUsePotion() {
+    std::cout << "You used a potion! Health restored." << std::endl;
+    player.setHealth(player.getHealth() + 30);
+    displayHealthStatus();
+}
+
+void Gameplay::displayHealthStatus() const {
+    std::cout << "Player HP: " << player.getHealth() << std::endl;
+    std::cout << "Enemy HP: " << enemy.getHealth() << std::endl;
+}
+
+float Gameplay::calculateDamage(float attackDamage) {
+    return attackDamage;
+}

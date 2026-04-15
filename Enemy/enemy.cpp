@@ -1,5 +1,11 @@
 #include "Enemy.h"
 
+Enemy::Enemy() {
+    health = 0;
+    attackDamage = 0;
+    isDefeated = false;
+}
+
 Enemy::Enemy(float health, float attackDamage) {
     this->health = health;
     this->attackDamage = attackDamage;
