@@ -2,12 +2,14 @@
 #define ENEMY_H
 
 class Enemy {
-    private:
+    protected:
         float health {};
         float attackDamage {};
         bool isDefeated {false};
 
     public:
+        Enemy();
+
         Enemy(float health, float attackDamage);
 
         float getHealth() const;
