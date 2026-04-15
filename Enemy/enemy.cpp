@@ -5,7 +5,7 @@ Enemy::Enemy(float health, float attackDamage) {
     this->attackDamage = attackDamage;
 }
 
-float Enemy::getHealth() const {
+float Enemy::getHealth() const { 
     return health;
 }
 
