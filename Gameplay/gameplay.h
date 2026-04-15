@@ -40,6 +40,8 @@ class Gameplay {
 
             void playerAttack();
 
+            void enemyAttack();
+
             void playerUsePotion();
 
             float calculateDamage(float attackDamage);

@@ -97,11 +97,31 @@ void Gameplay::playerAttack() {
     enemyHealth = enemyHealth - damage;
 
     if(enemyHealth!=0) {
-        decisionToAttackOrUsePotion();
+        enemyAttack();
     }
 
     else {
         newLevel();
+    }
+}
+
+void Gameplay::enemyAttack() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_int_distribution<> dist (1, 6);
+
+    int damage = dist(gen);
+
+    int playerHealth = player.getHealth();
+    playerHealth = playerHealth - damage;
+
+    if(playerHealth!=0) {
+        decisionToAttackOrUsePotion();
+    }
+
+    else {
+        return;
     }
 
 }
@@ -111,6 +131,7 @@ void Gameplay::newLevel () {
 
     if(i < 10) {
         std::cout << "You are in level" << i << std::endl;
+        decisionToAttackOrUsePotion();
     }
 
     else {
