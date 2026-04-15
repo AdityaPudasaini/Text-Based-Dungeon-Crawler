@@ -72,12 +72,12 @@ void Gameplay::attackTypeSelection() {
 
     if(attackTypeInt == 1) {
         attackName = "Sword Attack";
-        playerAttack();
+        playerPhysicalAttack();
     }
 
     else if(attackTypeInt == 2) {
         attackName = "Fireball";
-        playerAttack();
+        playerMagicAttack();
     }
 
     else {
@@ -86,7 +86,38 @@ void Gameplay::attackTypeSelection() {
     }
 }
 
-void Gameplay::playerAttack() {
+void Gameplay::playerMagicAttack() {
+    if(player.getMana() >= 5) {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+
+        std::uniform_int_distribution<> dist (10, 26);
+
+        int damage = dist(gen);
+
+        int newMana = player.getMana() - 5;
+        player.setMana(newMana);
+
+        int enemyHealth = enemy.getHealth();
+        enemyHealth = enemyHealth - damage;
+        enemy.setHealth(enemyHealth);
+
+        if(enemyHealth > 0) {
+            enemyAttack(enemyHealth);
+        }
+
+        else {
+            newLevel();
+        }
+    }
+
+    else {
+        std::cout << "Not enough mana." << std::endl;
+        decisionToAttackOrUsePotion();
+    }
+}
+
+void Gameplay::playerPhysicalAttack() {
     std::random_device rd;
     std::mt19937 gen(rd());
 
@@ -120,8 +151,7 @@ void Gameplay::enemyAttack(int enemyHealth) {
     player.setHealth(playerHealth);
 
     if(playerHealth > 0) {
-        std::cout << "Player health: " << playerHealth << " and enemy health: " << enemyHealth << "." << std::endl;
-        std::cout << std::endl;
+        displayHealthStatus();
         decisionToAttackOrUsePotion();
     }
 
@@ -133,29 +163,51 @@ void Gameplay::enemyAttack(int enemyHealth) {
 }
 
 void Gameplay::newLevel () {
-    int i = 1;
+    level++;
 
-    if(i < 10) {
-        std::cout << "Level Clearled" << std::endl;
-        std::cout << "You are in level " << i  << " now." << std::endl;
-        std::cout << std::endl;
+    std::cout << "Level Clearled" << std::endl;
+    std::cout << "You are in level " << level  << " now." << std::endl;
+    std::cout << std::endl;
 
-        Gameplay();
-        
+    if(level < 10) {
+        enemy.resetEnemy();
+
         decisionToAttackOrUsePotion();
     }
 
     else {
+        std:: cout << "Now its time for boss fight" << std::endl;
         return;
     }
 
 }
 
 void Gameplay::playerUsePotion() {
-    std::cout << "You used a potion! Health restored." << std::endl;
-    player.setHealth(player.getHealth() + 20);
-    displayHealthStatus();
-    enemyAttack(enemyHealth);
+    std::cout << "What kind of potion you want to use? 1 for health & 2 for mana" << std::endl;
+    int potionChoice{};
+    std::cin >> potionChoice;
+
+    if(potionChoice == 1) {
+        healthPotionCount --;
+        std::cout << "You used a health potion! Health restored." << std::endl;
+        std::cout << "You have " << healthPotionCount << " potions remaining." << std::endl;
+        player.setHealth(player.getHealth() + 20);
+        displayHealthStatus();
+        enemyAttack(enemyHealth);
+    }
+
+    else if(potionChoice == 2) {
+        manaPotionCount --;
+        std::cout << "You used a mana potion. Mana restored" << std::endl;
+        std::cout << "You have " << manaPotionCount << " potion remaining." << std::endl;
+        player.setMana(player.getMana() + 7);
+        enemyAttack(enemyHealth);
+    }
+
+    else {
+        std::cout << "Invalid choice" << std::endl;
+        decisionToAttackOrUsePotion();
+    }
 }
 
 void Gameplay::displayHealthStatus() const {

@@ -1,13 +1,13 @@
 #include "commonEnemy.h"
 
 commonEnemy::commonEnemy() {
-    health = 26;
-    attackDamage = 8;
-    isDefeated = false;
+    setHealth(26);
 }
 
-commonEnemy::commonEnemy(float health, float attackDamage, bool isDefeated) {
+commonEnemy::commonEnemy(float health) {
     this -> health = health;
-    this -> attackDamage = attackDamage;
-    this -> isDefeated = isDefeated;
+}
+
+void commonEnemy::resetEnemy() {
+    setHealth(26);
 }

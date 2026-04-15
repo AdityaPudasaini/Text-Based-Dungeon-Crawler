@@ -2,7 +2,7 @@
 
 Player::Player() {
     health = 100;
-    mana = 50;
+    mana = 10;
     attackDamage = 15;
 }
 

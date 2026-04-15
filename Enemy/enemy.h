@@ -5,7 +5,6 @@ class Enemy {
     protected:
         float health {};
         float attackDamage {};
-        bool isDefeated {false};
 
     public:
         Enemy();
@@ -16,13 +15,9 @@ class Enemy {
 
         float getAttackDamage() const;
 
-        bool getIsDefeated() const;
-
         void setHealth(float health);
 
         void setAttackDamage(float attackDamage);
-
-        void setIsDefeated(bool isDefeated);
 };
 
 #endif

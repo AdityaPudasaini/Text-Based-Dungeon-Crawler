@@ -15,6 +15,9 @@ class Gameplay {
         std::string potionName;
         std::string attackType;
         int enemyHealth;
+        int level {0};
+        int healthPotionCount {5};
+        int manaPotionCount {3};
         
         public:
             Gameplay();
@@ -39,7 +42,7 @@ class Gameplay {
 
             void attackTypeSelection();
 
-            void playerAttack();
+            void playerPhysicalAttack();
 
             void enemyAttack(int enemyHealth);
 
@@ -52,6 +55,8 @@ class Gameplay {
             void decisionToAttackOrUsePotion();
 
             void newLevel();
+            
+            void playerMagicAttack();
 };
 
 #endif

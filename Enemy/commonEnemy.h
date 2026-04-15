@@ -8,7 +8,9 @@ class commonEnemy : public Enemy {
     public:
         commonEnemy();
 
-        commonEnemy(float health, float attackDamage, bool isDefeated);
+        commonEnemy(float health);
+
+        void resetEnemy();
 };
 
 #endif
