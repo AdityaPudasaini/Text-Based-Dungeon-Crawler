@@ -7,9 +7,10 @@ Gameplay::Gameplay() {
 
 }
 
-Gameplay::Gameplay(Player player, commonEnemy enemy) {
+Gameplay::Gameplay(Player player, commonEnemy enemy, bossEnemy boss) {
     this->player = player;
     this->enemy = enemy;
+    this->boss = boss;
 }
 
 std::string Gameplay::getPlayerDecision() const {
@@ -98,16 +99,32 @@ void Gameplay::playerMagicAttack() {
         int newMana = player.getMana() - 5;
         player.setMana(newMana);
 
-        int enemyHealth = enemy.getHealth();
-        enemyHealth = enemyHealth - damage;
-        enemy.setHealth(enemyHealth);
+        if(isBossFight == false) {
+            int enemyHealth = enemy.getHealth();
+            enemyHealth = enemyHealth - damage;
+            enemy.setHealth(enemyHealth);
 
-        if(enemyHealth > 0) {
-            enemyAttack(enemyHealth);
+            if(enemyHealth > 0) {
+                enemyAttack(enemyHealth);
+            }
+
+            else {
+                newLevel();
+            }
         }
 
         else {
-            newLevel();
+            int bossHealth = boss.getHealth();
+            bossHealth = bossHealth - damage;
+            boss.setHealth(bossHealth);
+
+            if(bossHealth > 0) {
+                enemyAttack(bossHealth);
+            }
+
+            else {
+                newLevel();
+            }
         }
     }
 
@@ -125,16 +142,56 @@ void Gameplay::playerPhysicalAttack() {
 
     int damage = dist(gen);
 
-    int enemyHealth = enemy.getHealth();
-    enemyHealth = enemyHealth - damage;
-    enemy.setHealth(enemyHealth);
+    if(isBossFight == false) {
+        int enemyHealth = enemy.getHealth();
+        enemyHealth = enemyHealth - damage;
+        enemy.setHealth(enemyHealth);
 
-    if(enemyHealth > 0) {
-        enemyAttack(enemyHealth);
+        if(enemyHealth > 0) {
+            enemyAttack(enemyHealth);
+        }
+
+        else {
+            newLevel();
+        }
     }
 
     else {
-        newLevel();
+        int bossHealth = boss.getHealth();
+        bossHealth = bossHealth - damage;
+        boss.setHealth(bossHealth);
+
+        if(bossHealth > 0) {
+            bossAttack();
+        }
+
+        else {
+            std::cout << "Congratulation you completed the game" << std::endl;
+        }
+    }
+}
+
+void Gameplay::bossAttack() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_int_distribution<> dist (10, 30);
+
+    int damage = dist(gen);
+
+    int playerHealth = player.getHealth();
+    playerHealth = playerHealth - damage;
+    player.setHealth(playerHealth);
+
+    if(playerHealth > 0) {
+        if()
+        displayHealthStatus();
+        decisionToAttackOrUsePotion();
+    }
+
+    else {
+        std::cout << "You died" << std::endl;
+        return;
     }
 }
 
@@ -177,7 +234,8 @@ void Gameplay::newLevel () {
 
     else {
         std:: cout << "Now its time for boss fight" << std::endl;
-        return;
+        isBossFight = true;
+        decisionToAttackOrUsePotion();
     }
 
 }

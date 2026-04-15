@@ -4,12 +4,14 @@
 #include <string>
 
 #include "../Enemy/commonEnemy.h"
+#include "../Enemy/bossEnemy.h"
 #include "../Player/player.h"
 
 class Gameplay {
     private:
         Player player;
         commonEnemy enemy;
+        bossEnemy boss;
         std::string playerDecision;
         std::string attackName;
         std::string potionName;
@@ -18,11 +20,12 @@ class Gameplay {
         int level {0};
         int healthPotionCount {5};
         int manaPotionCount {3};
+        bool isBossFight {false};
         
         public:
             Gameplay();
 
-            Gameplay(Player player, commonEnemy enemy);
+            Gameplay(Player player, commonEnemy enemy, bossEnemy boss);
 
             std::string getPlayerDecision() const;
 
@@ -57,6 +60,8 @@ class Gameplay {
             void newLevel();
             
             void playerMagicAttack();
+
+            void bossAttack();
 };
 
 #endif
