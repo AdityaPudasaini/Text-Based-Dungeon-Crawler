@@ -3,20 +3,22 @@
 
 #include <string>
 
-#include "../Enemy/enemy.h"
+#include "../Enemy/commonEnemy.h"
 #include "../Player/player.h"
 
 class Gameplay {
     private:
         Player player;
-        Enemy enemy;
+        commonEnemy enemy;
         std::string playerDecision;
         std::string attackName;
         std::string potionName;
         std::string attackType;
         
         public:
-            Gameplay(Player player, Enemy enemy);
+            Gameplay();
+
+            Gameplay(Player player, commonEnemy enemy);
 
             std::string getPlayerDecision() const;
 
