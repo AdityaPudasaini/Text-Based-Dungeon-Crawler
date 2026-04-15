@@ -13,6 +13,14 @@ Gameplay::Gameplay(Player player, commonEnemy enemy, bossEnemy boss) {
     this->boss = boss;
 }
 
+bool Gameplay::getIsPlayerAlive() {
+    return isPlayerAlive;
+}
+
+void Gameplay::setIsPlayerAlive(bool isPlayerAlive) {
+    this->isPlayerAlive = isPlayerAlive;
+}
+
 void Gameplay::decisionToAttackOrUsePotion() {
     std::cout << "Do you want to attack or use a potion? (1 for Attack/2 for Potion): ";
     int playerDecionInt;
@@ -157,6 +165,7 @@ void Gameplay::bossAttack() {
 
     else {
         std::cout << "You died" << std::endl;
+        setIsPlayerAlive(false);
         return;
     }
 }
@@ -251,8 +260,15 @@ void Gameplay::playerUsePotion() {
 }
 
 void Gameplay::displayHealthStatus() const {
-    std::cout << "Player HP: " << player.getHealth() << std::endl;
-    std::cout << "Enemy HP: " << enemy.getHealth() << std::endl;
+    if(isBossFight == false) {
+        std::cout << "Player HP: " << player.getHealth() << std::endl;
+        std::cout << "Enemy HP: " << enemy.getHealth() << std::endl;
+    }
+
+    else {
+        std::cout << "Player HP: " << player.getHealth() << std::endl;
+        std::cout << "Boss HP: " << boss.getHealth() << std::endl;
+    }
 }
 
 float Gameplay::calculateDamage(float attackDamage) {

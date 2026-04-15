@@ -17,11 +17,16 @@ class Gameplay {
         int healthPotionCount {5};
         int manaPotionCount {3};
         bool isBossFight {false};
+        bool isPlayerAlive {true};
         
         public:
             Gameplay();
 
             Gameplay(Player player, commonEnemy enemy, bossEnemy boss);
+
+            bool getIsPlayerAlive();
+
+            void setIsPlayerAlive(bool isPlayerAlive);
 
             void setPlayerDecision(std::string playerDecision);
 
