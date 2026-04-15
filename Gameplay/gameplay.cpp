@@ -142,8 +142,9 @@ void Gameplay::newLevel () {
 
 void Gameplay::playerUsePotion() {
     std::cout << "You used a potion! Health restored." << std::endl;
-    player.setHealth(player.getHealth() + 30);
+    player.setHealth(player.getHealth() + 20);
     displayHealthStatus();
+    enemyAttack();
 }
 
 void Gameplay::displayHealthStatus() const {
