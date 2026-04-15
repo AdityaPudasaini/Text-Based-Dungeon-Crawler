@@ -8,6 +8,8 @@ class Player {
         float attackDamage {};
 
     public:
+        Player();
+
         Player(float health, float mana, float attackDamage);
 
         float getHealth() const;
