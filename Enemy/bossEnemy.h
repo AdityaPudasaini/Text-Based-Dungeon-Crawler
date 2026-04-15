@@ -1,5 +1,5 @@
-#ifndef BOSSENEMY.H
-#define BOSSENEMY.H
+#ifndef BOSSENEMY_H
+#define BOSSENEMY_H
 
 #include "enemy.h"
 
@@ -8,6 +8,6 @@ class bossEnemy : public Enemy {
         bossEnemy();
 
         bossEnemy(float health);
-} 
+};
 
 #endif

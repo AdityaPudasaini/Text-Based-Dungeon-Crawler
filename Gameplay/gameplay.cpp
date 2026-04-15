@@ -13,38 +13,6 @@ Gameplay::Gameplay(Player player, commonEnemy enemy, bossEnemy boss) {
     this->boss = boss;
 }
 
-std::string Gameplay::getPlayerDecision() const {
-    return playerDecision;
-}
-
-std::string Gameplay::getAttackName() const {
-    return attackName;
-}
-
-std::string Gameplay::getPotionName() const {
-    return potionName;
-}
-
-std::string Gameplay::getAttackType() const {
-    return attackType;
-}
-
-void Gameplay::setPlayerDecision(std::string playerDecision) {
-    this->playerDecision = playerDecision;
-}
-
-void Gameplay::setAttackName(std::string attackName) {
-    this->attackName = attackName;
-}
-
-void Gameplay::setPotionName(std::string potionName) {
-    this->potionName = potionName;
-}
-
-void Gameplay::setAttackType(std::string attackType) {
-    this->attackType = attackType;
-}
-
 void Gameplay::decisionToAttackOrUsePotion() {
     std::cout << "Do you want to attack or use a potion? (1 for Attack/2 for Potion): ";
     int playerDecionInt;
@@ -67,17 +35,16 @@ void Gameplay::decisionToAttackOrUsePotion() {
 void Gameplay::attackTypeSelection() {
     std::cout << std::endl;
     std::cout << "Choose the form of attack you want to use: (1 for Physical/ 2 for Magic): ";
-    std::cin >> attackType;
+    
+    int attackTypeInt;
+    std::cin >> attackTypeInt;
 
-    int attackTypeInt = std::stoi(attackType);
 
     if(attackTypeInt == 1) {
-        attackName = "Sword Attack";
         playerPhysicalAttack();
     }
 
     else if(attackTypeInt == 2) {
-        attackName = "Fireball";
         playerMagicAttack();
     }
 
@@ -184,7 +151,6 @@ void Gameplay::bossAttack() {
     player.setHealth(playerHealth);
 
     if(playerHealth > 0) {
-        if()
         displayHealthStatus();
         decisionToAttackOrUsePotion();
     }

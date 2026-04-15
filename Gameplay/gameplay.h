@@ -12,10 +12,6 @@ class Gameplay {
         Player player;
         commonEnemy enemy;
         bossEnemy boss;
-        std::string playerDecision;
-        std::string attackName;
-        std::string potionName;
-        std::string attackType;
         int enemyHealth;
         int level {0};
         int healthPotionCount {5};
@@ -26,14 +22,6 @@ class Gameplay {
             Gameplay();
 
             Gameplay(Player player, commonEnemy enemy, bossEnemy boss);
-
-            std::string getPlayerDecision() const;
-
-            std::string getAttackName() const;
-
-            std::string getPotionName() const;
-
-            std::string getAttackType() const;
 
             void setPlayerDecision(std::string playerDecision);
 
