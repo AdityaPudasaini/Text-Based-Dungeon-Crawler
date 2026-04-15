@@ -207,25 +207,41 @@ void Gameplay::newLevel () {
 }
 
 void Gameplay::playerUsePotion() {
-    std::cout << "What kind of potion you want to use? 1 for health & 2 for mana" << std::endl;
+    std::cout << "What kind of potion you want to use? 1 for health & 2 for mana: ";
     int potionChoice{};
     std::cin >> potionChoice;
 
     if(potionChoice == 1) {
-        healthPotionCount --;
-        std::cout << "You used a health potion! Health restored." << std::endl;
-        std::cout << "You have " << healthPotionCount << " potions remaining." << std::endl;
-        player.setHealth(player.getHealth() + 20);
-        displayHealthStatus();
-        enemyAttack(enemyHealth);
+        if(healthPotionCount > 0) { 
+            std::cout << "You used a health potion! Health restored." << std::endl;
+            std::cout << "You have " << healthPotionCount << " potions remaining." << std::endl;
+            player.setHealth(player.getHealth() + 20);
+            healthPotionCount --;
+            displayHealthStatus();
+            std::cout << "---------------------------------" << std::endl;
+            std::cout << "Updated health after enemy attack" << std::endl;
+            enemyAttack(enemyHealth);
+        }
+
+        else {
+            std::cout << "No health potions left" << std::endl;
+            decisionToAttackOrUsePotion();
+        }
     }
 
     else if(potionChoice == 2) {
-        manaPotionCount --;
-        std::cout << "You used a mana potion. Mana restored" << std::endl;
-        std::cout << "You have " << manaPotionCount << " potion remaining." << std::endl;
-        player.setMana(player.getMana() + 7);
-        enemyAttack(enemyHealth);
+        if(manaPotionCount > 0) {
+            std::cout << "You used a mana potion. Mana restored" << std::endl;
+            std::cout << "You have " << manaPotionCount << " potion remaining." << std::endl;
+            player.setMana(player.getMana() + 7);
+            manaPotionCount --;
+            enemyAttack(enemyHealth);
+        }
+
+        else {
+            std::cout << "No mana potions left" << std::endl;
+            decisionToAttackOrUsePotion();
+        }
     }
 
     else {

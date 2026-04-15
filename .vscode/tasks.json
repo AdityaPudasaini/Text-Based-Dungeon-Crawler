@@ -12,6 +12,7 @@
                 "${workspaceFolder}\\main.cpp",
                 "${workspaceFolder}\\Enemy\\enemy.cpp",
                 "${workspaceFolder}\\Enemy\\commonEnemy.cpp",
+                "${workspaceFolder}\\Enemy\\bossEnemy.cpp",
                 "${workspaceFolder}\\Player\\player.cpp",
                 "${workspaceFolder}\\Gameplay\\gameplay.cpp",
                 "-o",
@@ -37,8 +38,9 @@
                 "/Fe:",
                 "${workspaceFolder}\\rooster.exe",
                 "${workspaceFolder}\\main.cpp",
-                "${workspaceFolder}\\Enemy\\enemy.cpp",
+                "${workspaceFolder}\\Enemy\\enemy.cpp",  
                 "${workspaceFolder}\\Enemy\\commonEnemy.cpp",
+                "${workspaceFolder}\\Enemy\\bossEnemy.cpp",
                 "${workspaceFolder}\\Player\\player.cpp",
                 "${workspaceFolder}\\Gameplay\\gameplay.cpp"
             ],
