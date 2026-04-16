@@ -17,7 +17,7 @@ class Gameplay {
         int healthPotionCount {5};
         int manaPotionCount {3};
         bool isBossFight {false};
-        bool isPlayerAlive {true};
+        bool isPlayerAlive {true}; 
         
         public:
             Gameplay();

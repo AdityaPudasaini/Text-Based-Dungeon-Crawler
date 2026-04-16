@@ -189,6 +189,7 @@ void Gameplay::enemyAttack(int enemyHealth) {
 
     else {
         std::cout << "You died" << std::endl;
+        isPlayerAlive = false;
         return;
     }
 

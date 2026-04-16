@@ -4,7 +4,8 @@
 
 int main() {
     Gameplay gameplay;
-    while (gameplay.getIsPlayerAlive() == true) {
+
+    while (gameplay.getIsPlayerAlive()) {
         gameplay.decisionToAttackOrUsePotion();
     }
     return 0;
